@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AFA – Profit and Loss Distribution</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #0b3c5d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #092f47;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        section {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #0b3c5d;
+        }
+
+        input, button {
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #0b3c5d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #092f47;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #0b3c5d;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #ddd;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>AFA</h1>
+    <p>Profit and Loss Distribution System</p>
+</header>
+
+<nav>
+    <a href="#problem">Problem</a>
+    <a href="#solution">Solution</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#reflection">Reflection</a>
+</nav>
+
+<section id="problem">
+    <h2>Problem</h2>
+    <p>
+        AFA experiences profit loss or low income due to the lack of a clear system
+        for tracking expenses, income, and profit or loss distribution.
+    </p>
+</section>
+
+<section id="solution">
+    <h2>Proposed Solution</h2>
+    <ul>
+        <li>Create a clear profit and loss tracking system</li>
+        <li>Record income and expenses regularly</li>
+        <li>Distribute profit or loss fairly among partners</li>
+        <li>Review financial records monthly</li>
+    </ul>
+</section>
+
+<section id="calculator">
+    <h2>Profit / Loss Distribution Calculator</h2>
+    <p>Enter total profit (positive number) or loss (negative number):</p>
+
+    <input type="number" id="amount" placeholder="e.g. 10000 or -5000">
+    <button onclick="calculate()">Calculate</button>
+
+    <table id="resultTable" style="display:none;">
+        <thead>
+            <tr>
+                <th>Partner</th>
+                <th>Share (%)</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody id="results"></tbody>
+    </table>
+</section>
+
+<section id="reflection">
+    <h2>Reflection</h2>
+    <p>
+        This website was created to address the problem of improper profit and loss
+        management in AFA. By using simple design principles and functional tools,
+        the website helps users understand and apply a clear financial solution.
+    </p>
+</section>
+
+<footer>
+    © 2026 AFA | TLE Life Labs Project
+</footer>
+
+<script>
+    const partners = [
+        { name: "Partner A", share: 40 },
+        { name: "Partner B", share: 35 },
+        { name: "Partner C", share: 25 }
+    ];
+
+    function calculate() {
+        const total = parseFloat(document.getElementById("amount").value);
+        const table = document.getElementById("resultTable");
+        const body = document.getElementById("results");
+
+        if (isNaN(total)) {
+            alert("Please enter a valid amount.");
+            return;
+        }
+
+        body.innerHTML = "";
+
+        partners.forEach(partner => {
+            const value = (total * partner.share) / 100;
+            body.innerHTML += `
+                <tr>
+                    <td>${partner.name}</td>
+                    <td>${partner.share}%</td>
+                    <td>${value.toFixed(2)}</td>
+                </tr>
+            `;
+        });
+
+        table.style.display = "table";
+    }
+</script>
+
+</body>
+</html>
